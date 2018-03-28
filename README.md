@@ -9,11 +9,22 @@ Default time interval is **120** seconds. If you want to change that, replace va
 
 # Custom loggers
 
-If you want, you can write your custom logging classes. The default ones are:
+If you want, you can write your custom logging classes. 
+
+They should implement interface:
+```c#
+interface IDataLogger
+{
+  void Log(int listeners);
+  void Error(string message);
+}
+```
+
+You can use the default ones too:
 - **ConsoleLogger** that logs data to the console standard output
 - **TextFileLogger** that logs data to the file named with current date
 
-You can combine multiple loggers using **CompositeLogger** class.
+Multiple loggers can be used when combined using **CompositeLogger** class.
 
 # License
 
