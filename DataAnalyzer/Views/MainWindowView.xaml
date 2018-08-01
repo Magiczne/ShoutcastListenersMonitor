@@ -3,14 +3,16 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:local="clr-namespace:DataAnalyzer"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                 xmlns:cal="http://www.caliburnproject.org"
                  mc:Ignorable="d"
                  Title="Data Analyzer"
-                 MinHeight="600" MinWidth="800"
-                 Height="600" Width="800">
+                 MinHeight="450" MinWidth="800"
+                 Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition />
             <RowDefinition Height="35" />
@@ -18,7 +20,7 @@
 
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -28,10 +30,54 @@
                      Text="{Binding DataDirectory}" />
         </Grid>
 
-        <TabControl Grid.Row="1" />
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="2"
+            <Label Grid.Column="0"
+                   Content="File prefix:" />
+            <TextBox Grid.Column="1"
+                     Text="{Binding FilePrefix}" />
+        </Grid>
+
+        <TabControl Grid.Row="2">
+            <TabItem Header="Tables">
+                <DataGrid x:Name="AnalyzedData" 
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True" 
+                          SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date" 
+                                            Binding="{Binding Key, StringFormat={}{0:dd/MM/yyyy}}" />
+                        <DataGridTextColumn Header="Average listeners" 
+                                            Binding="{Binding Value.Average, StringFormat={}{0:0.00}}" />
+                        <DataGridTextColumn Header="Time without listeners" 
+                                            Binding="{Binding Value.TimeWithoutListeners, StringFormat={}{0:P0}}" />
+                        <DataGridTextColumn Header="Listeners peak" 
+                                            Binding="{Binding Value.ListenersPeak}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Header="Global plots">
+
+            </TabItem>
+            
+            <TabItem Header="Daily plots">
+
+            </TabItem>
+        </TabControl>
+
+        <Button Grid.Row="3"
                 Content="Analyze"
-                Style="{StaticResource AccentedSquareButtonStyle}" />
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <cal:ActionMessage MethodName="Analyze" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
     </Grid>
 </mah:MetroWindow>
