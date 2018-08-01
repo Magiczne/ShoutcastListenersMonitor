@@ -6,6 +6,7 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                  xmlns:cal="http://www.caliburnproject.org"
+                 xmlns:oxy="http://oxyplot.org/wpf"
                  mc:Ignorable="d"
                  Title="Data Analyzer"
                  MinHeight="450" MinWidth="800"
@@ -60,13 +61,17 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            
-            <TabItem Header="Global plots">
 
+            <TabItem Header="Average listeners">
+                <oxy:PlotView Model="{Binding AveragePlotModel}" />
+            </TabItem>
+
+            <TabItem Header="Time without listeners">
+                <oxy:PlotView Model="{Binding WithoutListenersPlotModel}" />
             </TabItem>
             
-            <TabItem Header="Daily plots">
-
+            <TabItem Header="Listeners peak">
+                <oxy:PlotView Model="{Binding ListenersPeakPlotModel}" />
             </TabItem>
         </TabControl>
 
