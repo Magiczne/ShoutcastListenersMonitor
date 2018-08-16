@@ -80,6 +80,14 @@
                 <Setter Property="MinorGridlineStyle" Value="None" />
                 <Setter Property="ExtraGridlineStyle" Value="None" />
             </Style>
+            
+            <Style TargetType="{x:Type oxy:StairStepSeries}">
+                <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
+            </Style>
+            
+            <Style TargetType="{x:Type oxy:LineSeries}">
+                <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>
