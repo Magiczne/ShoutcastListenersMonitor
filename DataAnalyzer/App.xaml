@@ -35,11 +35,20 @@
                 <Setter Property="Height" Value="25" />
                 <Setter Property="VerticalAlignment" Value="Top" />
             </Style>
-            
+             
             <!-- OxyPlot -->
             <Style TargetType="{x:Type oxy:Plot}">
                 <Setter Property="Background" Value="{StaticResource LightBackground}" />
                 <Setter Property="Padding" Value="10" />
+            </Style>
+
+            <Style TargetType="{x:Type oxy:TrackerControl}">
+                <Setter Property="Background" Value="{StaticResource BackgroundHighlighted}" />
+                <Setter Property="Foreground" Value="{StaticResource Foreground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHighlighted}" />
+                <Setter Property="BorderThickness" Value="2" />
+
+                <Setter Property="LineStroke" Value="{StaticResource ForegroundDark}" />
             </Style>
 
             <Style TargetType="{x:Type oxy:LinearAxis}">
