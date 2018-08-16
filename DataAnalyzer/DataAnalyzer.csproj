@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\AnalyzedData.cs" />
+    <Compile Include="Models\AnalyzedDataPivot.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="Resources\Styles\Colors.xaml">
       <Generator>MSBuild:Compile</Generator>

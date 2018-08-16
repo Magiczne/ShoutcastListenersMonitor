@@ -13,17 +13,20 @@ namespace DataAnalyzer.ViewModels
     {
         #region Fields
 
+        /// <summary>
+        ///     Raw data from files
+        /// </summary>
         private readonly Dictionary<DateTime, Dictionary<TimeSpan, int>> _rawData =
-            new Dictionary<DateTime, Dictionary<TimeSpan, int>>();                  
+            new Dictionary<DateTime, Dictionary<TimeSpan, int>>();
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Analyzed data to be displayed in tabular form
+        ///     Analyzed data in form on dictionary
         /// </summary>
-        public Dictionary<DateTime, AnalyzedData> AnalyzedData { get; set; } = new Dictionary<DateTime, AnalyzedData>();
+        public BindableCollection<AnalyzedData> AnalyzedData { get; set; } = new BindableCollection<AnalyzedData>();
 
         /// <summary>
         ///     Data for the average listeners plot
@@ -66,21 +69,22 @@ namespace DataAnalyzer.ViewModels
             {
                 var analyzed = new AnalyzedData
                 {
+                    Date = dayData.Key,
                     Average = dayData.Value.Average(entry => entry.Value),
                     ListenersPeak = dayData.Value.Max(entry => entry.Value),
                     TimeWithoutListeners = dayData.Value.Count(entry => entry.Value == 0) / (double) dayData.Value.Count,
                 };
 
-                AnalyzedData.Add(dayData.Key, analyzed);
+                AnalyzedData.Add(analyzed);
             }
 
             AverageListenersData.Clear();
             TimeWithoutListenersData.Clear();
             ListenersPeakData.Clear();
 
-            AverageListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.Average)));
-            TimeWithoutListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.TimeWithoutListeners * 100)));
-            ListenersPeakData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.ListenersPeak)));
+            AverageListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.Average)));
+            TimeWithoutListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.TimeWithoutListeners * 100)));
+            ListenersPeakData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.ListenersPeak)));
         }
 
         /// <summary>

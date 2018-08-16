@@ -1,7 +1,14 @@
-﻿namespace DataAnalyzer.Models
+﻿using System;
+
+namespace DataAnalyzer.Models
 {
     public class AnalyzedData
     {
+        /// <summary>
+        ///     Date
+        /// </summary>
+        public DateTime Date { get; set; }
+
         /// <summary>
         ///     Average listeners count
         /// </summary>

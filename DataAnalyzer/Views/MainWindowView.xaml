@@ -51,13 +51,13 @@
                           ItemsSource="{Binding AnalyzedData}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Date" 
-                                            Binding="{Binding Key, StringFormat={}{0:dd/MM/yyyy}}" />
+                                            Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
                         <DataGridTextColumn Header="Average listeners" 
-                                            Binding="{Binding Value.Average, StringFormat={}{0:0.00}}" />
+                                            Binding="{Binding Average, StringFormat={}{0:0.00}}" />
                         <DataGridTextColumn Header="Time without listeners" 
-                                            Binding="{Binding Value.TimeWithoutListeners, StringFormat={}{0:P0}}" />
+                                            Binding="{Binding TimeWithoutListeners, StringFormat={}{0:P0}}" />
                         <DataGridTextColumn Header="Listeners peak" 
-                                            Binding="{Binding Value.ListenersPeak}" />
+                                            Binding="{Binding ListenersPeak}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
