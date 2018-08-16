@@ -14,7 +14,7 @@ namespace DataAnalyzer.ViewModels
         #region Fields
 
         private readonly Dictionary<DateTime, Dictionary<TimeSpan, int>> _rawData =
-            new Dictionary<DateTime, Dictionary<TimeSpan, int>>();
+            new Dictionary<DateTime, Dictionary<TimeSpan, int>>();                  
 
         #endregion
 
@@ -52,6 +52,9 @@ namespace DataAnalyzer.ViewModels
 
         #endregion
 
+        /// <summary>
+        ///     First load then analyze data
+        /// </summary>
         public void Analyze()
         {
             _rawData.Clear();
@@ -80,6 +83,9 @@ namespace DataAnalyzer.ViewModels
             ListenersPeakData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.ListenersPeak)));
         }
 
+        /// <summary>
+        ///     Load data from all files
+        /// </summary>
         private void LoadData()
         {
             foreach (var file in Directory.GetFiles(DataDirectory))
@@ -91,6 +97,11 @@ namespace DataAnalyzer.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Parse data file
+        /// </summary>
+        /// <param name="fullPath">Path to the file</param>
+        /// <returns>Dictionary containing time and listeners at given time</returns>
         private Dictionary<TimeSpan, int> ParseDataFile(string fullPath)
         {
             return File.ReadAllLines(fullPath).Select(i =>
