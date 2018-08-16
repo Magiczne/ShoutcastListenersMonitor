@@ -1,0 +1,94 @@
+﻿<Application x:Class="DataAnalyzer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:bootstrap="clr-namespace:DataAnalyzer.Bootstrap"
+             xmlns:oxy="http://oxyplot.org/wpf">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles/DataGrid.xaml" />
+                <ResourceDictionary Source="Resources/Styles/TabControl.xaml" />
+                <ResourceDictionary Source="Resources/Styles/TextBox.xaml" />
+
+                <ResourceDictionary>
+                    <!-- ReSharper disable once InconsistentNaming -->
+                    <bootstrap:Bootstrapper x:Key="bootstrapper" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource StandardDataGrid}" />
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MetroLabel}">
+                <Setter Property="MinHeight" Value="25" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Padding" Value="5 4" />
+            </Style>
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource StandardTabControl}" />
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource StandardTextBox}">
+                <Setter Property="MinHeight" Value="25" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+            </Style>
+             
+            <!-- OxyPlot -->
+            <Style TargetType="{x:Type oxy:Plot}">
+                <Setter Property="Background" Value="{StaticResource LightBackground}" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+
+            <Style TargetType="{x:Type oxy:TrackerControl}">
+                <Setter Property="Background" Value="{StaticResource BackgroundHighlighted}" />
+                <Setter Property="Foreground" Value="{StaticResource Foreground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHighlighted}" />
+                <Setter Property="BorderThickness" Value="2" />
+
+                <Setter Property="LineStroke" Value="{StaticResource ForegroundDark}" />
+            </Style>
+
+            <Style TargetType="{x:Type oxy:LinearAxis}">
+                <Setter Property="TicklineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="MajorGridlineColor" Value="{StaticResource BorderBrushHighlightedColor}" />
+                <Setter Property="MinorGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="ExtraGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="AxislineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TitleColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TickStyle" Value="None" />
+
+                <Setter Property="MajorGridlineStyle" Value="Solid" />
+                <Setter Property="MinorGridlineStyle" Value="Dash" />
+                <Setter Property="ExtraGridlineStyle" Value="None" />
+            </Style>
+
+            <Style TargetType="{x:Type oxy:DateTimeAxis}">
+                <Setter Property="TicklineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="MajorGridlineColor" Value="{StaticResource BorderBrushHighlightedColor}" />
+                <Setter Property="MinorGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="ExtraGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="AxislineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TitleColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TickStyle" Value="None" />
+
+                <Setter Property="MajorGridlineStyle" Value="Solid" />
+                <Setter Property="MinorGridlineStyle" Value="None" />
+                <Setter Property="ExtraGridlineStyle" Value="None" />
+            </Style>
+            
+            <Style TargetType="{x:Type oxy:StairStepSeries}">
+                <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
+            </Style>
+            
+            <Style TargetType="{x:Type oxy:LineSeries}">
+                <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
