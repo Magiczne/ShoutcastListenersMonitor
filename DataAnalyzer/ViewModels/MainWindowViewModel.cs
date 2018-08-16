@@ -1,25 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Caliburn.Micro;
 using DataAnalyzer.Models;
 using OxyPlot;
 using OxyPlot.Axes;
-using OxyPlot.Series;
 
 namespace DataAnalyzer.ViewModels
 {
     public class MainWindowViewModel : Screen
     {
+        #region Fields
+
         private readonly Dictionary<DateTime, Dictionary<TimeSpan, int>> _rawData =
             new Dictionary<DateTime, Dictionary<TimeSpan, int>>();
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         ///     Analyzed data to be displayed in tabular form
         /// </summary>
         public Dictionary<DateTime, AnalyzedData> AnalyzedData { get; set; } = new Dictionary<DateTime, AnalyzedData>();
+
+        /// <summary>
+        ///     Data for the average listeners plot
+        /// </summary>
+        public BindableCollection<DataPoint> AverageListenersData { get; set; } = new BindableCollection<DataPoint>();
+
+        /// <summary>
+        ///     Data for the time without listeners plot
+        /// </summary>
+        public BindableCollection<DataPoint> TimeWithoutListenersData { get; set; } = new BindableCollection<DataPoint>();
+
+        /// <summary>
+        ///     Data for the listeners peak plot
+        /// </summary>
+        public BindableCollection<DataPoint> ListenersPeakData { get; set; } = new BindableCollection<DataPoint>();
 
         /// <summary>
         ///     Directory where data files are
@@ -31,112 +50,13 @@ namespace DataAnalyzer.ViewModels
         /// </summary>
         public string FilePrefix { get; set; } = "text-";
 
-        #region Plots data
-
-        private readonly LineSeries _averagePlotSeries = new LineSeries();
-
-        private readonly StairStepSeries _withoutListenerSeries = new StairStepSeries();
-
-        private readonly LineSeries _listenersPeakSeries = new LineSeries();
-
         #endregion
-
-        #region Plots models
-
-        public PlotModel AveragePlotModel { get; set; }
-
-        public PlotModel WithoutListenersPlotModel { get; set; }
-
-        public PlotModel ListenersPeakPlotModel { get; set; }
-
-        #endregion
-
-        public MainWindowViewModel()
-        {
-            AveragePlotModel = new PlotModel
-            {
-                Axes =
-                {
-                    new DateTimeAxis
-                    {
-                        Position = AxisPosition.Bottom,
-                        StringFormat = "dd/MM/yyyy",
-                        Title = "Date",
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.None
-                    },
-                    new LinearAxis
-                    {
-                        Position = AxisPosition.Left,
-                        Title = "Average listeners",
-                        Minimum = 0,
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.Dash
-                    }
-                },
-                Series =
-                {
-                    _averagePlotSeries
-                }
-            };
-
-            WithoutListenersPlotModel = new PlotModel
-            {
-                Axes =
-                {
-                    new DateTimeAxis
-                    {
-                        Position = AxisPosition.Bottom,
-                        StringFormat = "dd/MM/yyyy",
-                        Title = "Date",
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.None
-                    },
-                    new LinearAxis
-                    {
-                        Position = AxisPosition.Left,
-                        Title = "Time without listeners (%)",
-                        Minimum = 0, Maximum = 100,
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.Dash
-                    }
-                },
-                Series =
-                {
-                    _withoutListenerSeries
-                }
-            };
-
-            ListenersPeakPlotModel = new PlotModel
-            {
-                Axes =
-                {
-                    new DateTimeAxis
-                    {
-                        Position = AxisPosition.Bottom,
-                        StringFormat = "dd/MM/yyyy",
-                        Title = "Date",
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.None
-                    },
-                    new LinearAxis
-                    {
-                        Position = AxisPosition.Left,
-                        Title = "Listeners peak",
-                        Minimum = 0, Maximum = 100,
-                        MajorGridlineStyle = LineStyle.Solid,
-                        MinorGridlineStyle = LineStyle.Dash
-                    }
-                },
-                Series =
-                {
-                    _listenersPeakSeries
-                }
-            };
-        }
 
         public void Analyze()
         {
+            _rawData.Clear();
+            AnalyzedData.Clear();
+
             LoadData();
 
             foreach (var dayData in _rawData)
@@ -151,17 +71,13 @@ namespace DataAnalyzer.ViewModels
                 AnalyzedData.Add(dayData.Key, analyzed);
             }
 
-            _averagePlotSeries.Points.Clear();
-            _withoutListenerSeries.Points.Clear();
-            _listenersPeakSeries.Points.Clear();
+            AverageListenersData.Clear();
+            TimeWithoutListenersData.Clear();
+            ListenersPeakData.Clear();
 
-            _averagePlotSeries.Points.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.Average)));
-            _withoutListenerSeries.Points.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.TimeWithoutListeners * 100)));
-            _listenersPeakSeries.Points.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.ListenersPeak)));
-
-            AveragePlotModel.InvalidatePlot(true);
-            WithoutListenersPlotModel.InvalidatePlot(true);
-            ListenersPeakPlotModel.InvalidatePlot(true);
+            AverageListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.Average)));
+            TimeWithoutListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.TimeWithoutListeners * 100)));
+            ListenersPeakData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Key), entry.Value.ListenersPeak)));
         }
 
         private void LoadData()

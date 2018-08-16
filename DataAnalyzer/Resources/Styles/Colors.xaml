@@ -6,14 +6,19 @@
     <SolidColorBrush x:Key="LightBackground" Color="#2D2D30" />
 
     <!--Foreground-->
-    <SolidColorBrush x:Key="Foreground" Color="#EFEFEF" />
+    <Color x:Key="ForegroundColor">#EFEFEF</Color>
+    <SolidColorBrush x:Key="Foreground" Color="{StaticResource ForegroundColor}" />
 
     <!--General-->
-    <SolidColorBrush x:Key="BackgroundHighlighted" Color="#54545C" />
-    <SolidColorBrush x:Key="BorderBrushHighlighted" Color="#6A6A75" />
+    <Color x:Key="BackgroundHighlightedColor">#54545C</Color>
+    <Color x:Key="BorderBrushHighlightedColor">#6A6A75</Color>
+    <Color x:Key="BackgroundNormalColor">#3F3F46</Color>
+
+    <SolidColorBrush x:Key="BackgroundHighlighted" Color="{StaticResource BackgroundHighlightedColor}" />
+    <SolidColorBrush x:Key="BorderBrushHighlighted" Color="{StaticResource BorderBrushHighlightedColor}" />
     <SolidColorBrush x:Key="BackgroundSelected" Color="{DynamicResource AccentBaseColor}" />
     <SolidColorBrush x:Key="BorderBrushSelected" Color="{DynamicResource HighlightColor}" />
-    <SolidColorBrush x:Key="BackgroundNormal" Color="#3F3F46" />
+    <SolidColorBrush x:Key="BackgroundNormal" Color="{StaticResource BackgroundNormalColor}" />
     <SolidColorBrush x:Key="BorderBrushNormal" Color="#54545C" />
 
     <!--Text Box-->
