@@ -1,17 +1,17 @@
 ﻿using System;
-using ShoutcastMonitor.Abstraction;
+using ShoutcastMonitorLib.Abstraction;
 
-namespace ShoutcastMonitor.Loggers
+namespace ShoutcastMonitorLib.Loggers
 {
-    internal class ConsoleLogger : IDataLogger
+    public class ConsoleLogger : IDataLogger
     {
-        /// <inheritdoc cref="IDataLogger"/>
+        /// <inheritdoc cref="IDataLogger" />
         public void Log(int listeners)
         {
             Console.WriteLine($"{DateTime.Now:HH:mm:ss}\t{listeners}");
         }
 
-        /// <inheritdoc cref="IDataLogger"/>
+        /// <inheritdoc cref="IDataLogger" />
         public void Error(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;

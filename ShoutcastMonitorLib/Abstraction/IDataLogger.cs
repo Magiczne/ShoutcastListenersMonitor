@@ -1,9 +1,9 @@
-﻿namespace ShoutcastMonitor.Abstraction
+﻿namespace ShoutcastMonitorLib.Abstraction
 {
     /// <summary>
     ///     Data Writer interface
     /// </summary>
-    internal interface IDataLogger
+    public interface IDataLogger
     {
         /// <summary>
         ///     Log data

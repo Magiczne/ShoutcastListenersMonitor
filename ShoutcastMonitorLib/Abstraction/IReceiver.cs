@@ -1,9 +1,9 @@
-﻿namespace ShoutcastMonitor.Abstraction
+﻿namespace ShoutcastMonitorLib.Abstraction
 {
     /// <summary>
     ///     Data receiver interface
     /// </summary>
-    internal interface IReceiver
+    public interface IReceiver
     {
         /// <summary>
         ///     Data logger instance

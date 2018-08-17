@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using ShoutcastMonitor.Abstraction;
+using ShoutcastMonitorLib.Abstraction;
 
-namespace ShoutcastMonitor.Loggers
+namespace ShoutcastMonitorLib.Loggers
 {
-    internal class TextFileLogger : IDataLogger
+    public class TextFileLogger : IDataLogger
     {
         /// <summary>
         ///     Filename

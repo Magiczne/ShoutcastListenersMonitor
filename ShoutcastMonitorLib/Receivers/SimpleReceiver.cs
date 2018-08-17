@@ -2,11 +2,11 @@
 using System.Net;
 using System.Timers;
 using System.Xml;
-using ShoutcastMonitor.Abstraction;
+using ShoutcastMonitorLib.Abstraction;
 
-namespace ShoutcastMonitor
+namespace ShoutcastMonitorLib.Receivers
 {
-    internal class BasicReceiver : IReceiver
+    public class SimpleReceiver : IReceiver
     {
         /// <summary>
         ///     URL address
@@ -22,12 +22,12 @@ namespace ShoutcastMonitor
         public IDataLogger Logger { get; set; }
 
         /// <summary>
-        ///     Create instance of BasicReceiver
+        ///     Create instance of SimpleReceiver
         /// </summary>
         /// <param name="url">Stats url to monitor</param>
         /// <param name="interval">Timer interval (in seconds)</param>
         /// <param name="logger">Logger instance</param>
-        public BasicReceiver(string url, int interval, IDataLogger logger)
+        public SimpleReceiver(string url, int interval, IDataLogger logger)
         {
             _url = url;
             Logger = logger;
