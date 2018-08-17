@@ -8,29 +8,39 @@ namespace ShoutcastMonitorLib.Receivers
 {
     public class SimpleReceiver : IReceiver
     {
-        /// <summary>
-        ///     URL address
-        /// </summary>
-        private readonly string _url;
+        #region Fields
 
         /// <summary>
         ///     Timer instance
         /// </summary>
         private readonly Timer _timer;
 
+        #endregion
+
+        #region Properties
+
         /// <inheritdoc cref="IReceiver"/>
         public IDataLogger Logger { get; set; }
+
+        /// <inheritdoc cref="IReceiver"/>
+        public int TimeInterval { get; set; }
+
+        /// <inheritdoc cref="IReceiver"/>
+        public string StatsUrl { get; set; }
+
+        #endregion
 
         /// <summary>
         ///     Create instance of SimpleReceiver
         /// </summary>
-        /// <param name="url">Stats url to monitor</param>
+        /// <param name="statsUrl">Stats statsUrl to monitor</param>
         /// <param name="interval">Timer interval (in seconds)</param>
         /// <param name="logger">Logger instance</param>
-        public SimpleReceiver(string url, int interval, IDataLogger logger)
+        public SimpleReceiver(string statsUrl, int interval, IDataLogger logger)
         {
-            _url = url;
+            StatsUrl = statsUrl;
             Logger = logger;
+            TimeInterval = interval;
 
             _timer = new Timer(1000 * interval);
             _timer.Elapsed += (sender, args) =>
@@ -50,7 +60,7 @@ namespace ShoutcastMonitorLib.Receivers
 
             using (var client = new WebClient())
             {
-                xmlString = client.DownloadString(_url);
+                xmlString = client.DownloadString(StatsUrl);
             }
 
             var document = new XmlDocument();
@@ -66,13 +76,14 @@ namespace ShoutcastMonitorLib.Receivers
         {
            ProcessData();
 
+            _timer.Interval = TimeInterval * 1000;
             _timer.Start();
         }
 
         /// <inheritdoc cref="IReceiver"/>
         public void Stop()
         {
-            _timer.Start();
+            _timer.Stop();
         }
 
         /// <summary>
@@ -95,7 +106,7 @@ namespace ShoutcastMonitorLib.Receivers
             }
             catch (WebException)
             {
-                Logger.Error("Cannot connect to the specified url");
+                Logger.Error("Cannot connect to the specified statsUrl");
             }
             catch (XmlException)
             {
