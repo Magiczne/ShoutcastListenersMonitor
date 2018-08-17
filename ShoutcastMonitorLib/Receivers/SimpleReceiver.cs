@@ -98,19 +98,19 @@ namespace ShoutcastMonitorLib.Receivers
             }
             catch (ArgumentNullException)
             {
-                Logger.Error("There was no data to process!");
+                Logger.Error(Properties.Errors.NoData);
             }
             catch (FormatException)
             {
-                Logger.Error("Number of listeners is not available");
+                Logger.Error(Properties.Errors.DataNotAvailable);
             }
             catch (WebException)
             {
-                Logger.Error("Cannot connect to the specified statsUrl");
+                Logger.Error(Properties.Errors.ConnectionError);
             }
             catch (XmlException)
             {
-                Logger.Error("Stats file is not a valid XML");
+                Logger.Error(Properties.Errors.NotValidXml);
             }
         }
     }
