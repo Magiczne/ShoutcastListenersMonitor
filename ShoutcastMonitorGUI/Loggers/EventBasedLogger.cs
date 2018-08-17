@@ -37,7 +37,7 @@ namespace ShoutcastMonitorGUI.Loggers
             _eventAggregator.PublishOnUIThread(new ListenerData
             {
                 Time = DateTime.Now,
-                Listeners = 0,
+                Listeners = -1,
                 Message = message
             });
         }
