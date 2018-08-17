@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using ShoutcastMonitor.Abstraction;
+using ShoutcastMonitorLib.Abstraction;
 
-namespace ShoutcastMonitor.Loggers
+namespace ShoutcastMonitorLib.Loggers
 {
-    internal class CompositeLogger : IDataLogger
+    public class CompositeLogger : IDataLogger
     {
         /// <summary>
         ///     Data loggers
