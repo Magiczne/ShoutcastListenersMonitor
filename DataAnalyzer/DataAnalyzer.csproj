@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C176C441-14BC-41AD-AC5F-9EF50639431A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>DataAnalyzer</RootNamespace>
     <AssemblyName>DataAnalyzer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
