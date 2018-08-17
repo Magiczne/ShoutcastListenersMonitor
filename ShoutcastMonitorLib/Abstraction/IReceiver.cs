@@ -1,14 +1,28 @@
-﻿namespace ShoutcastMonitor.Abstraction
+﻿namespace ShoutcastMonitorLib.Abstraction
 {
     /// <summary>
     ///     Data receiver interface
     /// </summary>
-    internal interface IReceiver
+    public interface IReceiver
     {
+        #region Properties
+
         /// <summary>
         ///     Data logger instance
         /// </summary>
         IDataLogger Logger { get; set; }
+
+        /// <summary>
+        ///     Time interval
+        /// </summary>
+        int TimeInterval { get; set; }
+
+        /// <summary>
+        ///     URL address
+        /// </summary>
+        string StatsUrl { get; set; }
+
+        #endregion
 
         /// <summary>
         ///     Receive number of listeners

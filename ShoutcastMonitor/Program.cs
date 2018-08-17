@@ -1,5 +1,6 @@
 ﻿using System;
-using ShoutcastMonitor.Loggers;
+using ShoutcastMonitorLib.Loggers;
+using ShoutcastMonitorLib.Receivers;
 
 namespace ShoutcastMonitor
 {
@@ -24,7 +25,7 @@ namespace ShoutcastMonitor
             logger.Add(new ConsoleLogger());
             logger.Add(new TextFileLogger());
 
-            new BasicReceiver(url, Interval, logger).Start();
+            new SimpleReceiver(url, Interval, logger).Start();
 
             Console.ReadKey();
         }
