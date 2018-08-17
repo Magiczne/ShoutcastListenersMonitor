@@ -123,6 +123,9 @@
   <data name="DataNotAvailable" xml:space="preserve">
     <value>Brak informacji o liczbie słuchaczy</value>
   </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Podany adres jest nieprawidłowy</value>
+  </data>
   <data name="NoData" xml:space="preserve">
     <value>Brak danych do przetworzenia</value>
   </data>

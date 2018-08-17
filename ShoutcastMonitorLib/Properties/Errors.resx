@@ -123,6 +123,9 @@
   <data name="DataNotAvailable" xml:space="preserve">
     <value>Number of listeners not present in the data</value>
   </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Provided URL is not valid</value>
+  </data>
   <data name="NoData" xml:space="preserve">
     <value>There was no data to proceed</value>
   </data>

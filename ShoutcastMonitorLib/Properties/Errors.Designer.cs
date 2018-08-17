@@ -79,6 +79,15 @@ namespace ShoutcastMonitorLib.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Provided URL is not valid.
+        /// </summary>
+        internal static string InvalidUrl {
+            get {
+                return ResourceManager.GetString("InvalidUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu There was no data to proceed.
         /// </summary>
         internal static string NoData {

@@ -100,6 +100,10 @@ namespace ShoutcastMonitorLib.Receivers
             {
                 Logger.Error(Properties.Errors.NoData);
             }
+            catch (ArgumentException)
+            {
+                Logger.Error(Properties.Errors.InvalidUrl);
+            }
             catch (FormatException)
             {
                 Logger.Error(Properties.Errors.DataNotAvailable);
