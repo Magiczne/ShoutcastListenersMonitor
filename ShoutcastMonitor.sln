@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnalyzer", "DataAnalyze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutcastMonitorLib", "ShoutcastMonitorLib\ShoutcastMonitorLib.csproj", "{F132F67C-C802-4F51-8BAD-B5B1C1E8B3DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutcastMonitorGUI", "ShoutcastMonitorGUI\ShoutcastMonitorGUI.csproj", "{7CDD9FD0-E80E-43E7-9772-53D586103407}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F132F67C-C802-4F51-8BAD-B5B1C1E8B3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F132F67C-C802-4F51-8BAD-B5B1C1E8B3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F132F67C-C802-4F51-8BAD-B5B1C1E8B3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDD9FD0-E80E-43E7-9772-53D586103407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDD9FD0-E80E-43E7-9772-53D586103407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDD9FD0-E80E-43E7-9772-53D586103407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDD9FD0-E80E-43E7-9772-53D586103407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
