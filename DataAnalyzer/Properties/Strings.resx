@@ -117,4 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Analyze" xml:space="preserve">
+    <value>Analyze</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Data Analyzer</value>
+  </data>
+  <data name="AverageListeners" xml:space="preserve">
+    <value>Average listeners</value>
+  </data>
+  <data name="DataDirectory" xml:space="preserve">
+    <value>Data directory:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FilePrefix" xml:space="preserve">
+    <value>File prefix:</value>
+  </data>
+  <data name="ListenersPeak" xml:space="preserve">
+    <value>Listeners peak</value>
+  </data>
+  <data name="TimeWithoutListeners" xml:space="preserve">
+    <value>Time without listeners</value>
+  </data>
+  <data name="TimeWithoutListenersPercentage" xml:space="preserve">
+    <value>Time without listeners (%)</value>
+  </data>
 </root>
