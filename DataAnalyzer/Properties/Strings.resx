@@ -138,6 +138,9 @@
   <data name="ListenersPeak" xml:space="preserve">
     <value>Listeners peak</value>
   </data>
+  <data name="TabularData" xml:space="preserve">
+    <value>Tabular data</value>
+  </data>
   <data name="TimeWithoutListeners" xml:space="preserve">
     <value>Time without listeners</value>
   </data>

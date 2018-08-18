@@ -138,6 +138,9 @@
   <data name="ListenersPeak" xml:space="preserve">
     <value>Maksymalna liczba słuchaczy</value>
   </data>
+  <data name="TabularData" xml:space="preserve">
+    <value>Dane tabelaryczne</value>
+  </data>
   <data name="TimeWithoutListeners" xml:space="preserve">
     <value>Czas bez słuchaczy</value>
   </data>

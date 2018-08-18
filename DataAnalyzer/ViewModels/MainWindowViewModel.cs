@@ -53,6 +53,11 @@ namespace DataAnalyzer.ViewModels
         /// </summary>
         public string FilePrefix { get; set; } = "text-";
 
+        /// <summary>
+        ///     Determine if analyze has been performed already
+        /// </summary>
+        public bool IsAnalyzed { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -85,6 +90,8 @@ namespace DataAnalyzer.ViewModels
             AverageListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.Average)));
             TimeWithoutListenersData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.TimeWithoutListeners * 100)));
             ListenersPeakData.AddRange(AnalyzedData.Select(entry => new DataPoint(DateTimeAxis.ToDouble(entry.Date), entry.ListenersPeak)));
+
+            IsAnalyzed = true;
         }
 
         /// <summary>

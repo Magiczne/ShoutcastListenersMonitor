@@ -124,6 +124,15 @@ namespace DataAnalyzer.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tabular data.
+        /// </summary>
+        public static string TabularData {
+            get {
+                return ResourceManager.GetString("TabularData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Time without listeners.
         /// </summary>
         public static string TimeWithoutListeners {

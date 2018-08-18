@@ -10,14 +10,14 @@
                  xmlns:oxy="http://oxyplot.org/wpf"
                  mc:Ignorable="d"
                  Title="{x:Static p:Strings.AppTitle}"
-                 MinHeight="450" MinWidth="800"
-                 Height="450" Width="800">
+                 MinHeight="600" MinWidth="800"
+                 Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition />
             <RowDefinition Height="35" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0">
@@ -44,77 +44,7 @@
                      Text="{Binding FilePrefix}" />
         </Grid>
 
-        <TabControl Grid.Row="2">
-            <TabItem Header="Tables">
-                <DataGrid AutoGenerateColumns="False"
-                          IsReadOnly="True" 
-                          SelectionMode="Single" 
-                          ItemsSource="{Binding AnalyzedData}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static p:Strings.Date}" 
-                                            Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
-                        <DataGridTextColumn Header="{x:Static p:Strings.AverageListeners}" 
-                                            Binding="{Binding Average, StringFormat={}{0:0.00}}" />
-                        <DataGridTextColumn Header="{x:Static p:Strings.TimeWithoutListeners}" 
-                                            Binding="{Binding TimeWithoutListeners, StringFormat={}{0:P0}}" />
-                        <DataGridTextColumn Header="{x:Static p:Strings.ListenersPeak}" 
-                                            Binding="{Binding ListenersPeak}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-
-            <TabItem Header="{x:Static p:Strings.AverageListeners}">
-                <oxy:Plot>
-                    <oxy:Plot.Axes>
-                        <oxy:LinearAxis Title="{x:Static p:Strings.AverageListeners}" 
-                                        Position="Left" 
-                                        Minimum="0" />
-                        <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
-                    </oxy:Plot.Axes>
-                    <oxy:Plot.Series>
-                        <oxy:LineSeries ItemsSource="{Binding AverageListenersData}" />
-                    </oxy:Plot.Series>
-                </oxy:Plot>
-            </TabItem>
-
-            <TabItem Header="{x:Static p:Strings.TimeWithoutListeners}">
-                <oxy:Plot>
-                    <oxy:Plot.Axes>
-                        <oxy:LinearAxis Title="{x:Static p:Strings.TimeWithoutListenersPercentage}" 
-                                        Position="Left" 
-                                        Minimum="0" 
-                                        Maximum="100" />
-                        <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
-                    </oxy:Plot.Axes>
-                    <oxy:Plot.Series>
-                        <oxy:StairStepSeries ItemsSource="{Binding TimeWithoutListenersData}" />
-                    </oxy:Plot.Series>
-                </oxy:Plot>
-            </TabItem>
-
-            <TabItem Header="{x:Static p:Strings.ListenersPeak}">
-                <oxy:Plot>
-                    <oxy:Plot.Axes>
-                        <oxy:LinearAxis Title="{x:Static p:Strings.ListenersPeak}" 
-                                        Position="Left" 
-                                        Minimum="0" 
-                                        Maximum="100" />
-                        <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
-                    </oxy:Plot.Axes>
-                    <oxy:Plot.Series>
-                        <oxy:LineSeries ItemsSource="{Binding ListenersPeakData}" />
-                    </oxy:Plot.Series>
-                </oxy:Plot>
-            </TabItem>
-        </TabControl>
-
-        <Button Grid.Row="3"
+        <Button Grid.Row="2"
                 Content="{x:Static p:Strings.Analyze}"
                 Style="{StaticResource AccentedSquareButtonStyle}">
             <i:Interaction.Triggers>
@@ -123,5 +53,102 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
+
+        <TabControl Grid.Row="3" 
+                    IsEnabled="{Binding IsAnalyzed}">
+            <TabItem Header="Wykresy zbiorcze">
+                <TabControl Style="{StaticResource StandardTabControl}">
+                    <TabItem Header="{x:Static p:Strings.TabularData}">
+                        <DataGrid AutoGenerateColumns="False"
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          ItemsSource="{Binding AnalyzedData}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{x:Static p:Strings.Date}" 
+                                            Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.AverageListeners}" 
+                                            Binding="{Binding Average, StringFormat={}{0:0.00}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.TimeWithoutListeners}" 
+                                            Binding="{Binding TimeWithoutListeners, StringFormat={}{0:P0}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.ListenersPeak}" 
+                                            Binding="{Binding ListenersPeak}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+
+                    <TabItem Header="{x:Static p:Strings.AverageListeners}">
+                        <oxy:Plot>
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Title="{x:Static p:Strings.AverageListeners}" 
+                                        Position="Left" 
+                                        Minimum="0" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
+                                          Position="Bottom" 
+                                          StringFormat="dd/MM/yyyy" />
+                            </oxy:Plot.Axes>
+                            <oxy:Plot.Series>
+                                <oxy:LineSeries ItemsSource="{Binding AverageListenersData}" />
+                            </oxy:Plot.Series>
+                        </oxy:Plot>
+                    </TabItem>
+
+                    <TabItem Header="{x:Static p:Strings.TimeWithoutListeners}">
+                        <oxy:Plot>
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Title="{x:Static p:Strings.TimeWithoutListenersPercentage}" 
+                                        Position="Left" 
+                                        Minimum="0" 
+                                        Maximum="100" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
+                                          Position="Bottom" 
+                                          StringFormat="dd/MM/yyyy" />
+                            </oxy:Plot.Axes>
+                            <oxy:Plot.Series>
+                                <oxy:StairStepSeries ItemsSource="{Binding TimeWithoutListenersData}" />
+                            </oxy:Plot.Series>
+                        </oxy:Plot>
+                    </TabItem>
+
+                    <TabItem Header="{x:Static p:Strings.ListenersPeak}">
+                        <oxy:Plot>
+                            <oxy:Plot.Axes>
+                                <oxy:LinearAxis Title="{x:Static p:Strings.ListenersPeak}" 
+                                        Position="Left" 
+                                        Minimum="0" 
+                                        Maximum="100" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
+                                          Position="Bottom" 
+                                          StringFormat="dd/MM/yyyy" />
+                            </oxy:Plot.Axes>
+                            <oxy:Plot.Series>
+                                <oxy:LineSeries ItemsSource="{Binding ListenersPeakData}" />
+                            </oxy:Plot.Series>
+                        </oxy:Plot>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Wykresy dzienne">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0"
+                           VerticalAlignment="Top"
+                           Content="{x:Static p:Strings.Date}" />
+                    <ComboBox Grid.Column="1" Grid.Row="0"
+                              VerticalAlignment="Top" />
+
+                    <oxy:Plot Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+
+                    </oxy:Plot>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </mah:MetroWindow>
