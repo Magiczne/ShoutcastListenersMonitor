@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
 
+                <ResourceDictionary Source="Resources/Styles/ComboBox.xaml" />
                 <ResourceDictionary Source="Resources/Styles/DataGrid.xaml" />
                 <ResourceDictionary Source="Resources/Styles/TabControl.xaml" />
                 <ResourceDictionary Source="Resources/Styles/TextBox.xaml" />
@@ -23,13 +24,23 @@
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource StandardComboBox}">
+                <Setter Property="MinHeight" Value="25" />
+                <Setter Property="Height" Value="25" />
+            </Style>
             <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource StandardDataGrid}" />
             <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MetroLabel}">
                 <Setter Property="MinHeight" Value="25" />
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Padding" Value="5 4" />
             </Style>
-            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource StandardTabControl}" />
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource MetroTabControl}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource StandardTextBox}">
                 <Setter Property="MinHeight" Value="25" />
                 <Setter Property="Height" Value="25" />
@@ -80,7 +91,23 @@
                 <Setter Property="MinorGridlineStyle" Value="None" />
                 <Setter Property="ExtraGridlineStyle" Value="None" />
             </Style>
-            
+
+
+            <Style TargetType="{x:Type oxy:TimeSpanAxis}">
+                <Setter Property="TicklineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="MajorGridlineColor" Value="{StaticResource BorderBrushHighlightedColor}" />
+                <Setter Property="MinorGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="ExtraGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="AxislineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TitleColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TickStyle" Value="None" />
+
+                <Setter Property="MajorGridlineStyle" Value="Solid" />
+                <Setter Property="MinorGridlineStyle" Value="None" />
+                <Setter Property="ExtraGridlineStyle" Value="None" />
+            </Style>
+
             <Style TargetType="{x:Type oxy:StairStepSeries}">
                 <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
             </Style>
