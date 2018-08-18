@@ -34,6 +34,13 @@
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Padding" Value="5 4" />
             </Style>
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource MetroTabControl}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource StandardTextBox}">
                 <Setter Property="MinHeight" Value="25" />
                 <Setter Property="Height" Value="25" />
