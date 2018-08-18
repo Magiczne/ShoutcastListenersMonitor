@@ -54,24 +54,24 @@
             </i:Interaction.Triggers>
         </Button>
 
-        <TabControl Grid.Row="3" 
+        <TabControl Grid.Row="3"
                     IsEnabled="{Binding IsAnalyzed}">
             <TabItem Header="{x:Static p:Strings.SummaryData}">
                 <TabControl Style="{StaticResource StandardTabControl}">
                     <TabItem Header="{x:Static p:Strings.TabularData}">
                         <DataGrid AutoGenerateColumns="False"
-                          IsReadOnly="True" 
-                          SelectionMode="Single" 
-                          ItemsSource="{Binding AnalyzedData}">
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  ItemsSource="{Binding AnalyzedData}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="{x:Static p:Strings.Date}" 
-                                            Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
-                                <DataGridTextColumn Header="{x:Static p:Strings.AverageListeners}" 
-                                            Binding="{Binding Average, StringFormat={}{0:0.00}}" />
-                                <DataGridTextColumn Header="{x:Static p:Strings.TimeWithoutListeners}" 
-                                            Binding="{Binding TimeWithoutListeners, StringFormat={}{0:P0}}" />
-                                <DataGridTextColumn Header="{x:Static p:Strings.ListenersPeak}" 
-                                            Binding="{Binding ListenersPeak}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.Date}"
+                                                    Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.AverageListeners}"
+                                                    Binding="{Binding Average, StringFormat={}{0:0.00}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.TimeWithoutListeners}"
+                                                    Binding="{Binding TimeWithoutListeners, StringFormat={}{0:P0}}" />
+                                <DataGridTextColumn Header="{x:Static p:Strings.ListenersPeak}"
+                                                    Binding="{Binding ListenersPeak}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
@@ -79,12 +79,15 @@
                     <TabItem Header="{x:Static p:Strings.AverageListeners}">
                         <oxy:Plot>
                             <oxy:Plot.Axes>
-                                <oxy:LinearAxis Title="{x:Static p:Strings.AverageListeners}" 
-                                        Position="Left" 
-                                        Minimum="0" />
-                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
+                                <oxy:LinearAxis Title="{x:Static p:Strings.AverageListeners}"
+                                                Position="Left"
+                                                IsZoomEnabled="False"
+                                                IsPanEnabled="False"
+                                                Minimum="0" 
+                                                Maximum="{Binding AverageListenersPlotMaxScale}" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}"
+                                                  Position="Bottom"
+                                                  StringFormat="dd/MM/yyyy" />
                             </oxy:Plot.Axes>
                             <oxy:Plot.Series>
                                 <oxy:LineSeries ItemsSource="{Binding AverageListenersData}" />
@@ -95,13 +98,15 @@
                     <TabItem Header="{x:Static p:Strings.TimeWithoutListeners}">
                         <oxy:Plot>
                             <oxy:Plot.Axes>
-                                <oxy:LinearAxis Title="{x:Static p:Strings.TimeWithoutListenersPercentage}" 
-                                        Position="Left" 
-                                        Minimum="0" 
-                                        Maximum="100" />
-                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
+                                <oxy:LinearAxis Title="{x:Static p:Strings.TimeWithoutListenersPercentage}"
+                                                Position="Left"
+                                                IsZoomEnabled="False"
+                                                IsPanEnabled="False"
+                                                Minimum="0"
+                                                Maximum="{Binding TimeWithoutListenersPlotMaxScale}" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}"
+                                                  Position="Bottom"
+                                                  StringFormat="dd/MM/yyyy" />
                             </oxy:Plot.Axes>
                             <oxy:Plot.Series>
                                 <oxy:StairStepSeries ItemsSource="{Binding TimeWithoutListenersData}" />
@@ -112,13 +117,15 @@
                     <TabItem Header="{x:Static p:Strings.ListenersPeak}">
                         <oxy:Plot>
                             <oxy:Plot.Axes>
-                                <oxy:LinearAxis Title="{x:Static p:Strings.ListenersPeak}" 
-                                        Position="Left" 
-                                        Minimum="0" 
-                                        Maximum="100" />
-                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}" 
-                                          Position="Bottom" 
-                                          StringFormat="dd/MM/yyyy" />
+                                <oxy:LinearAxis Title="{x:Static p:Strings.ListenersPeak}"
+                                                Position="Left"
+                                                IsZoomEnabled="False"
+                                                IsPanEnabled="False"
+                                                Minimum="0"
+                                                Maximum="{Binding ListenersPeakPlotMaxScale}" />
+                                <oxy:DateTimeAxis Title="{x:Static p:Strings.Date}"
+                                                  Position="Bottom"
+                                                  StringFormat="dd/MM/yyyy" />
                             </oxy:Plot.Axes>
                             <oxy:Plot.Series>
                                 <oxy:LineSeries ItemsSource="{Binding ListenersPeakData}" />
@@ -144,18 +151,18 @@
                     <ComboBox Grid.Column="1" Grid.Row="0"
                               VerticalAlignment="Top"
                               ItemStringFormat="dd/MM/yyyy"
-                              ItemsSource="{Binding Dates}" 
+                              ItemsSource="{Binding Dates}"
                               SelectedItem="{Binding SelectedDate}" />
 
                     <oxy:Plot Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
                         <oxy:Plot.Axes>
-                            <oxy:LinearAxis Title="{x:Static p:Strings.Listeners}" 
+                            <oxy:LinearAxis Title="{x:Static p:Strings.Listeners}"
                                             Position="Left"
-                                            IsZoomEnabled="False" 
+                                            IsZoomEnabled="False"
                                             IsPanEnabled="False"
-                                            Minimum="0" 
-                                            Maximum="{Binding SelectedDayDataMax}" />
-                            <oxy:TimeSpanAxis Title="{x:Static p:Strings.Time}" 
+                                            Minimum="0"
+                                            Maximum="{Binding SelectedDayPlotMaxScale}" />
+                            <oxy:TimeSpanAxis Title="{x:Static p:Strings.Time}"
                                               Position="Bottom" />
                         </oxy:Plot.Axes>
                         <oxy:Plot.Series>
