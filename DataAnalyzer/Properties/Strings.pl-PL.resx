@@ -126,6 +126,9 @@
   <data name="AverageListeners" xml:space="preserve">
     <value>Średnia liczba słuchaczy</value>
   </data>
+  <data name="DailyData" xml:space="preserve">
+    <value>Wykresy dzienne</value>
+  </data>
   <data name="DataDirectory" xml:space="preserve">
     <value>Folder z danymi:</value>
   </data>
@@ -135,8 +138,20 @@
   <data name="FilePrefix" xml:space="preserve">
     <value>Prefiks pliku:</value>
   </data>
+  <data name="Listeners" xml:space="preserve">
+    <value>Liczba słuchaczy</value>
+  </data>
   <data name="ListenersPeak" xml:space="preserve">
     <value>Maksymalna liczba słuchaczy</value>
+  </data>
+  <data name="SummaryData" xml:space="preserve">
+    <value>Dane zbiorcze</value>
+  </data>
+  <data name="TabularData" xml:space="preserve">
+    <value>Dane tabelaryczne</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Czas</value>
   </data>
   <data name="TimeWithoutListeners" xml:space="preserve">
     <value>Czas bez słuchaczy</value>
