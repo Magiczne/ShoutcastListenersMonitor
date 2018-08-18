@@ -84,7 +84,23 @@
                 <Setter Property="MinorGridlineStyle" Value="None" />
                 <Setter Property="ExtraGridlineStyle" Value="None" />
             </Style>
-            
+
+
+            <Style TargetType="{x:Type oxy:TimeSpanAxis}">
+                <Setter Property="TicklineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="MajorGridlineColor" Value="{StaticResource BorderBrushHighlightedColor}" />
+                <Setter Property="MinorGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="ExtraGridlineColor" Value="{StaticResource BackgroundNormalColor}" />
+                <Setter Property="AxislineColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TitleColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="TickStyle" Value="None" />
+
+                <Setter Property="MajorGridlineStyle" Value="Solid" />
+                <Setter Property="MinorGridlineStyle" Value="None" />
+                <Setter Property="ExtraGridlineStyle" Value="None" />
+            </Style>
+
             <Style TargetType="{x:Type oxy:StairStepSeries}">
                 <Setter Property="Color" Value="{StaticResource AccentBaseColor}" />
             </Style>

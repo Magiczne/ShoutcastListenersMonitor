@@ -88,6 +88,15 @@ namespace DataAnalyzer.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Daily data.
+        /// </summary>
+        public static string DailyData {
+            get {
+                return ResourceManager.GetString("DailyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data directory:.
         /// </summary>
         public static string DataDirectory {
@@ -115,6 +124,15 @@ namespace DataAnalyzer.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Listeners.
+        /// </summary>
+        public static string Listeners {
+            get {
+                return ResourceManager.GetString("Listeners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Listeners peak.
         /// </summary>
         public static string ListenersPeak {
@@ -124,11 +142,29 @@ namespace DataAnalyzer.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Summary data.
+        /// </summary>
+        public static string SummaryData {
+            get {
+                return ResourceManager.GetString("SummaryData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tabular data.
         /// </summary>
         public static string TabularData {
             get {
                 return ResourceManager.GetString("TabularData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
         

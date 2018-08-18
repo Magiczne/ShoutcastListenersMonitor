@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using Caliburn.Micro;
 using DataAnalyzer.Models;
 using OxyPlot;
@@ -23,6 +24,8 @@ namespace DataAnalyzer.ViewModels
 
         #region Properties
 
+        #region Summary data
+
         /// <summary>
         ///     Analyzed data in form on dictionary
         /// </summary>
@@ -42,6 +45,52 @@ namespace DataAnalyzer.ViewModels
         ///     Data for the listeners peak plot
         /// </summary>
         public BindableCollection<DataPoint> ListenersPeakData { get; set; } = new BindableCollection<DataPoint>();
+
+        #endregion
+
+        #region Daily data
+
+        /// <summary>
+        ///     List of dates for data
+        /// </summary>
+        public BindableCollection<DateTime> Dates { get; set; } = new BindableCollection<DateTime>();
+
+        /// <summary>
+        ///     Selected date
+        /// </summary>
+        public DateTime SelectedDate { get; set; }
+
+        /// <summary>
+        ///     Data for the selected day listeners plot
+        /// </summary>
+        public BindableCollection<DataPoint> SelectedDayData
+        {
+            get
+            {
+                if (!_rawData.ContainsKey(SelectedDate))
+                {
+                    return new BindableCollection<DataPoint>();
+                }
+
+                return new BindableCollection<DataPoint>(_rawData[SelectedDate]
+                    .Select(pair => new DataPoint(TimeSpanAxis.ToDouble(pair.Key), pair.Value)).ToList());
+            }
+        }
+
+        public int SelectedDayDataMax
+        {
+            get
+            {
+                if (!_rawData.ContainsKey(SelectedDate))
+                {
+                    return 100;
+                }
+
+                return _rawData[SelectedDate].Max(pair => pair.Value) + 3;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         ///     Directory where data files are
@@ -106,6 +155,8 @@ namespace DataAnalyzer.ViewModels
 
                 _rawData.Add(date, ParseDataFile(file));
             }
+
+            Dates.AddRange(_rawData.Keys);
         }
 
         /// <summary>

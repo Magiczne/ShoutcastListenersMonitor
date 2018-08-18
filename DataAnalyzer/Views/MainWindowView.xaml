@@ -56,7 +56,7 @@
 
         <TabControl Grid.Row="3" 
                     IsEnabled="{Binding IsAnalyzed}">
-            <TabItem Header="Wykresy zbiorcze">
+            <TabItem Header="{x:Static p:Strings.SummaryData}">
                 <TabControl Style="{StaticResource StandardTabControl}">
                     <TabItem Header="{x:Static p:Strings.TabularData}">
                         <DataGrid AutoGenerateColumns="False"
@@ -127,7 +127,7 @@
                     </TabItem>
                 </TabControl>
             </TabItem>
-            <TabItem Header="Wykresy dzienne">
+            <TabItem Header="{x:Static p:Strings.DailyData}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
@@ -142,10 +142,25 @@
                            VerticalAlignment="Top"
                            Content="{x:Static p:Strings.Date}" />
                     <ComboBox Grid.Column="1" Grid.Row="0"
-                              VerticalAlignment="Top" />
+                              VerticalAlignment="Top"
+                              ItemStringFormat="dd/MM/yyyy"
+                              ItemsSource="{Binding Dates}" 
+                              SelectedItem="{Binding SelectedDate}" />
 
                     <oxy:Plot Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
-
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Title="{x:Static p:Strings.Listeners}" 
+                                            Position="Left"
+                                            IsZoomEnabled="False" 
+                                            IsPanEnabled="False"
+                                            Minimum="0" 
+                                            Maximum="{Binding SelectedDayDataMax}" />
+                            <oxy:TimeSpanAxis Title="{x:Static p:Strings.Time}" 
+                                              Position="Bottom" />
+                        </oxy:Plot.Axes>
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding SelectedDayData}" />
+                        </oxy:Plot.Series>
                     </oxy:Plot>
                 </Grid>
             </TabItem>
