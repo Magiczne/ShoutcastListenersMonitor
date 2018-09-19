@@ -178,12 +178,12 @@ namespace DataAnalyzer.ViewModels
         /// <summary>
         ///     Directory where data files are
         /// </summary>
-        public string DataDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory + "data";
+        public string DataDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory + "logs";
 
         /// <summary>
         ///     File prefix before date
         /// </summary>
-        public string FilePrefix { get; set; } = "text-";
+        public string FilePrefix { get; set; } = "log-";
 
         /// <summary>
         ///     Determine if analyze has been performed already
