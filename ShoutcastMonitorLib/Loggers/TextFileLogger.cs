@@ -9,12 +9,12 @@ namespace ShoutcastMonitorLib.Loggers
         /// <summary>
         ///     Data directory
         /// </summary>
-        private const string DataDirectory = "data/";
+        private const string DataDirectory = "logs/";
 
         /// <summary>
         ///     Filename
         /// </summary>
-        private static string Filename => $"{DataDirectory}/text-{DateTime.Now:yyyy-MM-dd}.txt";
+        private static string Filename => $"{DataDirectory}/log-{DateTime.Now:yyyy-MM-dd}.txt";
 
         /// <inheritdoc cref="IDataLogger"/>
         public void Log(int listeners)
