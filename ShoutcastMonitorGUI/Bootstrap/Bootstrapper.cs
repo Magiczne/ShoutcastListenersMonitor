@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
+using ShoutcastMonitorGUI.Services;
+using ShoutcastMonitorGUI.Settings;
 using ShoutcastMonitorGUI.ViewModels;
 using SimpleInjector;
 
@@ -28,6 +30,9 @@ namespace ShoutcastMonitorGUI.Bootstrap
             ContainerInstance.Register<IWindowManager, WindowManager>();
             ContainerInstance.RegisterSingleton<IEventAggregator, EventAggregator>();
             //ContainerInstance.RegisterSingleton<IDialogCoordinator, DialogCoordinator>();
+
+            ContainerInstance.Register<ISettings, ApplicationSettings>();
+            ContainerInstance.Register<IConfigService, ConfigService>();
 
             ContainerInstance.Verify();
         }

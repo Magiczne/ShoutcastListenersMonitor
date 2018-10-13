@@ -97,6 +97,15 @@ namespace ShoutcastMonitorGUI.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Start monitoring when application starts.
+        /// </summary>
+        public static string MonitorWithAppStart {
+            get {
+                return ResourceManager.GetString("MonitorWithAppStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu seconds.
         /// </summary>
         public static string Seconds {

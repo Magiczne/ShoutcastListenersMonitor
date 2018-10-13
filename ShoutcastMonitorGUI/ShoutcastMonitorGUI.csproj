@@ -96,6 +96,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.pl-PL.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\ConfigService.cs" />
+    <Compile Include="Services\IConfigService.cs" />
+    <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\ISettings.cs" />
     <Compile Include="Util\Collections\LimitedStack.cs" />
     <Compile Include="Util\Collections\ObservableLinkedList.cs" />
     <Compile Include="Util\Converters\InverseBooleanConverter.cs" />
