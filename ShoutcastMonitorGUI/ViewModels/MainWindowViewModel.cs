@@ -40,6 +40,12 @@ namespace ShoutcastMonitorGUI.ViewModels
             _configService = configService;
             StatsUrl = (string) _configService.Get("StatsUrl");
             TimeInterval = (int) _configService.Get("TimeInterval");
+            MonitorWithAppStart = (bool) _configService.Get("MonitorWithAppStart");
+
+            if (MonitorWithAppStart)
+            {
+                Monitor();
+            }
         }
 
         #region IHandle
@@ -71,6 +77,7 @@ namespace ShoutcastMonitorGUI.ViewModels
                 // Update config
                 _configService.Update("StatsUrl", StatsUrl);
                 _configService.Update("TimeInterval", TimeInterval);
+                _configService.Update("MonitorWithAppStart", MonitorWithAppStart);
             }
             else
             {
@@ -89,6 +96,11 @@ namespace ShoutcastMonitorGUI.ViewModels
         ///     Data acquistition time interval
         /// </summary>
         public int TimeInterval { get; set; } = 120;
+
+        /// <summary>
+        ///     Start monitoring when application starts
+        /// </summary>
+        public bool MonitorWithAppStart { get; set; } = false;
 
         /// <summary>
         ///     Is monitoring currently active

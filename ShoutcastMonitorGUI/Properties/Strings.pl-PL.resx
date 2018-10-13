@@ -129,6 +129,9 @@
   <data name="Monitor" xml:space="preserve">
     <value>Monitoruj</value>
   </data>
+  <data name="MonitorWithAppStart" xml:space="preserve">
+    <value>Rozpocznij monitorowanie po włączeniu aplikacji</value>
+  </data>
   <data name="Seconds" xml:space="preserve">
     <value>sekund</value>
   </data>

@@ -46,5 +46,17 @@ namespace ShoutcastMonitorGUI.Properties {
                 this["TimeInterval"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MonitorWithAppStart {
+            get {
+                return ((bool)(this["MonitorWithAppStart"]));
+            }
+            set {
+                this["MonitorWithAppStart"] = value;
+            }
+        }
     }
 }
