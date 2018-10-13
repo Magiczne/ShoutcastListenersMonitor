@@ -2,6 +2,7 @@
 using ShoutcastMonitorGUI.Loggers;
 using ShoutcastMonitorGUI.Models;
 using ShoutcastMonitorGUI.Properties;
+using ShoutcastMonitorGUI.Services;
 using ShoutcastMonitorGUI.Util.Collections;
 using ShoutcastMonitorLib.Abstraction;
 using ShoutcastMonitorLib.Loggers;
@@ -18,9 +19,14 @@ namespace ShoutcastMonitorGUI.ViewModels
         /// </summary>
         private readonly IReceiver _dataReceiver;
 
+        /// <summary>
+        ///     Config service
+        /// </summary>
+        private readonly IConfigService _configService;
+
         #endregion
 
-        public MainWindowViewModel(IEventAggregator eventAggregator)
+        public MainWindowViewModel(IEventAggregator eventAggregator, IConfigService configService)
         {
             eventAggregator.Subscribe(this);
 
@@ -29,6 +35,17 @@ namespace ShoutcastMonitorGUI.ViewModels
             logger.Add(new EventBasedLogger(eventAggregator));
 
             _dataReceiver = new SimpleReceiver(StatsUrl, TimeInterval, logger);
+
+            // Get config
+            _configService = configService;
+            StatsUrl = (string) _configService.Get("StatsUrl");
+            TimeInterval = (int) _configService.Get("TimeInterval");
+            MonitorWithAppStart = (bool) _configService.Get("MonitorWithAppStart");
+
+            if (MonitorWithAppStart)
+            {
+                Monitor();
+            }
         }
 
         #region IHandle
@@ -56,6 +73,11 @@ namespace ShoutcastMonitorGUI.ViewModels
                 _dataReceiver.StatsUrl = StatsUrl;
 
                 _dataReceiver.Start();
+
+                // Update config
+                _configService.Update("StatsUrl", StatsUrl);
+                _configService.Update("TimeInterval", TimeInterval);
+                _configService.Update("MonitorWithAppStart", MonitorWithAppStart);
             }
             else
             {
@@ -74,6 +96,11 @@ namespace ShoutcastMonitorGUI.ViewModels
         ///     Data acquistition time interval
         /// </summary>
         public int TimeInterval { get; set; } = 120;
+
+        /// <summary>
+        ///     Start monitoring when application starts
+        /// </summary>
+        public bool MonitorWithAppStart { get; set; } = false;
 
         /// <summary>
         ///     Is monitoring currently active
