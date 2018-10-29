@@ -85,11 +85,27 @@ namespace DataAnalyzer.ViewModels
         /// <returns>Dictionary containing time and listeners at given time</returns>
         private Dictionary<TimeSpan, int> ParseDataFile(string fullPath)
         {
-            return File.ReadAllLines(fullPath).Select(i =>
+            var dict = new Dictionary<TimeSpan, int>();
+
+            foreach (var line in File.ReadAllLines(fullPath))
             {
-                var data = i.Split('\t');
-                return new KeyValuePair<TimeSpan, int>(TimeSpan.Parse(data[0]), int.Parse(data[1]));
-            }).ToDictionary(i => i.Key, i => i.Value);
+                var data = line.Split('\t');
+
+                try
+                {
+                    var timespan = TimeSpan.Parse(data[0]);
+                    var listeners = int.Parse(data[1]);
+
+                    dict.Add(timespan, listeners);
+                }
+                catch (Exception)
+                {
+                    // Just continue to next iteration.
+                    // Do not add any data to the return dictionary
+                }
+            }
+
+            return dict;
         }
 
         #region Properties
