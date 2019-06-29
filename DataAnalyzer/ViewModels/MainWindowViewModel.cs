@@ -48,6 +48,10 @@ namespace DataAnalyzer.ViewModels
             NotifyOfPropertyChange(nameof(TimeWithoutListenersPlotMaxScale));
             NotifyOfPropertyChange(nameof(ListenersPeakPlotMaxScale));
 
+            NotifyOfPropertyChange(nameof(AverageListeners));
+            NotifyOfPropertyChange(nameof(TimeWithoutListeners));
+            NotifyOfPropertyChange(nameof(ListenersPeak));
+
             AverageListenersData.Clear();
             TimeWithoutListenersData.Clear();
             ListenersPeakData.Clear();
@@ -109,6 +113,25 @@ namespace DataAnalyzer.ViewModels
         }
 
         #region Properties
+
+        #region Global data
+
+        /// <summary>
+        ///     Average listeners count for all selected data
+        /// </summary>
+        public double AverageListeners => AnalyzedData.Average(entry => entry.Average);
+
+        /// <summary>
+        ///     Sum of time without listeners
+        /// </summary>
+        public double TimeWithoutListeners => AnalyzedData.Average(entry => entry.TimeWithoutListeners) * 100;
+
+        /// <summary>
+        ///     Global listeners peak
+        /// </summary>
+        public int ListenersPeak => AnalyzedData.Max(entry => entry.ListenersPeak);
+
+        #endregion
 
         #region Summary data
 
